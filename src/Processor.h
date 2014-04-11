@@ -15,12 +15,15 @@
 	#define PROCESSOR_H
 
 #include <iostream>
+#include <vector>
 #include "Machine.h"
 using namespace std;
 
 class Processor {
 	public:
 		Processor();
+		void print_vec(vector<string> vec);
+		bool strvec_contains(vector<string> strvec,string target);
 		bool check_determinism(Machine & machine);
 		void run_machine(Machine & machine, vector< vector<string> > & tapes);
 };

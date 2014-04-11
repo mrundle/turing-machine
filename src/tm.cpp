@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
 
 		reader.read_machine(argv[1],machine);		// Read information from machine file, store in machine
 
-		if(!processor.check_determinism(machine)){ 	// TODO: check_determinism(machine) function is currently incomplete
+		if(!processor.check_determinism(machine)){ 	// Check to ensure that the machine is deterministic
 
 			cout << "tm: the provided machine description provides transitions that lead to a nondeterministic machine." << endl;
 			cout << "tm: this program is meant to simulate deterministic Turing machines." << endl;
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 		else{
 
 			reader.read_user(tapes);				// Read tape input from the user
-			debug(reader,machine,tapes); 			// see if we got the right information
+			//debug(reader,machine,tapes); 			// see if we got the right information
 			processor.run_machine(machine,tapes);	// TODO: run_machine(machine,tapes) function is currently incomplete
 		}
 
