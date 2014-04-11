@@ -1,3 +1,12 @@
+//=================================================================================//
+// Matt Rundle & Matt Mahan                                                        //
+// CSE 30151                                                                       //
+//                                                                                 //
+// This is the header file for the Machine class. Currently, the class consists    //
+// only of various string data structures, and does not have any public or         //
+// private functions.
+//=================================================================================//
+
 #ifndef MACHINE_H
 	#define MACHINE_H
 

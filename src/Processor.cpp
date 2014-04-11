@@ -96,8 +96,8 @@ bool Processor::check_determinism(Machine & machine){
 }
 
 //============================================================================//
-// Function -----: check_determinism
-// Input --------: Machine & machine
+// Function -----: run machine
+// Input --------: Machine & machine, vector< vector<string> > & tapes
 // Output -------: Runs Turing machine on given input, outputting steps
 //                 and final state (including whether or not the machine
 //                 completed after 1000 steps)
