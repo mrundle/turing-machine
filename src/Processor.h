@@ -22,7 +22,9 @@ using namespace std;
 class Processor {
 	public:
 		Processor();
-		void print_vec(vector<string> vec);
+		void print_vec(vector<string>);
+		bool vec_is_empty(vector<string> &);
+		void print_trace(vector<string> &, int, string);
 		bool strvec_contains(vector<string> strvec,string target);
 		bool check_determinism(Machine & machine);
 		void run_machine(Machine & machine, vector< vector<string> > & tapes);

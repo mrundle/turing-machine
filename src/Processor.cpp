@@ -22,9 +22,25 @@ Processor::Processor(){}
 //============================================================================//
 void Processor::print_vec(vector<string> vec){
 	for(vector<string>::iterator it = vec.begin(); it != vec.end(); it++){
-		if(it != (vec.end()-1)) cout << *it << ",";
+		if(it != (vec.end()-1)){
+			cout << *it << ",";
+		}
 		else cout << *it;
 	}
+}
+
+//============================================================================//
+// Function -----: vec_is_empty
+// Input --------: vector<string>
+// Output -------: Boolean (T/F) telling whether or not the vector is 
+//                 composed of all " " empty spaces
+//============================================================================//
+bool Processor::vec_is_empty(vector<string> & vec){
+	vector<string>::iterator it;
+	for(it = vec.begin(); it != vec.end(); it++){
+		if( *it != " ") return false;
+	}
+	return true;
 }
 
 //============================================================================//
@@ -32,13 +48,18 @@ void Processor::print_vec(vector<string> vec){
 // Input --------: vector<string>, string, vector<string>
 // Output -------: Prints the current state of the machine
 //============================================================================//
-void Processor::print_trace(vector<string> & leftOfHead, 
-							string & currentState, vector<string> & rightOfHead){
+void Processor::print_trace(vector<string> & tape, 
+							int headPosition, string currentState){
+		vector<string> leftVec, rightVec;
+		for(int i = 0; i < tape.size(); i++){
+			if(i < headPosition) leftVec.push_back(tape[i]);
+			else rightVec.push_back(tape[i]);
+		}
 		cout << "(";
-		print_vec(leftOfHead);
+		print_vec(leftVec);
 		cout << ")" << currentState << "(";
-		print_vec(rightOfHead);
-		cout << ")";
+		if(!vec_is_empty(rightVec)) print_vec(rightVec);
+		cout << ")" << endl;
 }
 
 //============================================================================//
@@ -82,18 +103,18 @@ bool Processor::check_determinism(Machine & machine){
 //                 completed after 1000 steps)
 //============================================================================//
 void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes){
-	vector< vector<string> >::iterator tape;
-	for(tape = tapes.begin(); tape != tapes.end(); tape++){	
+	vector< vector<string> >::iterator tape_it;
+	for(tape_it = tapes.begin(); tape_it != tapes.end(); tape_it++){	
+		vector<string> tape = *tape_it;		
 		int limit = 1000;
 		bool made_transition;
-		vector<string> leftOfHead;
-		vector<string> rightOfHead(*tape);
+		int headPosition = 0;
 		string currentState = machine.startState;
 		// Print initial tracing information
-		print_trace(leftOfHead,currentState,rightOfHead);
+		print_trace(tape,headPosition,currentState);
 		while(limit-- > 0){
 			// get input str
-			string input = rightOfHead[0];
+			string input = tape[headPosition];
 
 			// verify that input str is in alphabet
 			if(!strvec_contains(machine.inputAlphabet,input)){
@@ -113,23 +134,42 @@ void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes)
 					// update current state
 					currentState = resultingState;
 					// update the tape
-					if(direction == "R") leftOfHead.push_back(symbolToWrite);
-					else if(direction == "L") rightOfHead.insert(rightOfHead.begin(),symbolToWrite);
-					else cout << "error";
+					tape[headPosition] = symbolToWrite;
+					// move the head
+					if(direction == "R"){
+						headPosition++;
+						if( (headPosition + 1) > tape.size() ){
+							tape.push_back(" ");
+						}
+					}
+					if(direction == "L"){
+						headPosition--;
+						if(headPosition < 0){
+							// TODO: Handle this error case (exit with message)
+						}
+					}
+					break; // since we've transitioned, break
 				}	
 			}
 			// transition to the reject state if no transition was made
-			if(!made_transition) currentState = machine.rejectState;
+			if(!made_transition){
+				currentState = machine.rejectState;
+				headPosition++;
+				if((headPosition + 1) > tape.size() ){
+					tape.push_back(" ");
+				}
+			}
+
+			// print tracing information
+			print_trace(tape,headPosition,currentState);
+
 			// break out of the processing loop if we're at a terminating state
 			if((currentState == machine.acceptState) || (currentState == machine.rejectState)) break;
-			
-			// print tracing information
-			print_trace(leftOfHead,currentState,rightOfHead);
 		}
 
 		// report results to user
-		if     (currentState == machine.acceptState) cout << "ACCEPT" << endl;
-		else if(currentState == machine.rejectState) cout << "REJECT" << endl;
-		else cout << "DID NOT HALT" << endl;
+		if     (currentState == machine.acceptState) cout << "ACCEPT" << endl << endl;
+		else if(currentState == machine.rejectState) cout << "REJECT" << endl << endl;
+		else cout << "DID NOT HALT" << endl << endl;
 	}
 }
