@@ -14,3 +14,24 @@
 #include "Processor.h"
 
 Processor::Processor(){}
+
+//============================================================================//
+// Function -----: check_determinism
+// Input --------: Machine & machine
+// Output -------: Checks for determinism of a Turing machine by examining
+//                 each of its state transitions
+//============================================================================//
+bool Processor::check_determinism(Machine & machine){
+	return true;
+}
+
+//============================================================================//
+// Function -----: check_determinism
+// Input --------: Machine & machine
+// Output -------: Runs Turing machine on given input, outputting steps
+//                 and final state (including whether or not the machine
+//                 completed after 1000 steps)
+//============================================================================//
+void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes){
+	cout << "running machine..." << endl;
+}

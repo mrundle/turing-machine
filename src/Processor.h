@@ -15,11 +15,14 @@
 	#define PROCESSOR_H
 
 #include <iostream>
+#include "Machine.h"
 using namespace std;
 
 class Processor {
 	public:
 		Processor();
+		bool check_determinism(Machine & machine);
+		void run_machine(Machine & machine, vector< vector<string> > & tapes);
 };
 
 #endif
