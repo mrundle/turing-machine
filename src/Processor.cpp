@@ -113,12 +113,15 @@ void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes)
 		// Print initial tracing information
 		print_trace(tape,headPosition,currentState);
 		while(limit-- > 0){
+
 			// get input str
 			string input = tape[headPosition];
 
-			// verify that input str is in alphabet
-			if(!strvec_contains(machine.inputAlphabet,input)){
-				// TODO: Handle invalid input (exit with message)
+			// verify that input str is in tape alphabet
+			if(!strvec_contains(machine.tapeAlphabet,input)){
+				cout << "tm: Current tape string cannot be read by the head (it is not in the tape alphabet.)" << endl;
+				cout << "tm: Exiting." << endl;
+				exit(EXIT_FAILURE);
 			}
 
 			// loop through transitions to find a matching rule
@@ -145,7 +148,11 @@ void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes)
 					if(direction == "L"){
 						headPosition--;
 						if(headPosition < 0){
-							// TODO: Handle this error case (exit with message)
+							// From an email from Prof. Blanton, 4/14/14 @ 4:30PM:
+							// "Also, just to clarify, please assume that when the head of a Turing machine
+							// is pointing to the leftmost character on the tape and the head is instructed
+							// to go left, nothing happens (i.e., the head does not move)"
+							headPosition = 0;
 						}
 					}
 					break; // since we've transitioned, break

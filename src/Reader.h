@@ -24,9 +24,10 @@ using namespace std;
 class Reader {
 	public:
 		Reader();
-		void print_vec(vector<string> vec);
-		void read_machine(char * filename, Machine & machine);
-		void read_user(vector< vector<string> > & tapes);
+		void print_vec(vector<string>);
+		void read_machine(char * filename, Machine &);
+		void read_user(vector< vector<string> > &);
+		void check_tapes(vector< vector<string> > &, vector<string>);
 };
 
 #endif

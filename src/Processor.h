@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 #include "Machine.h"
 using namespace std;
 

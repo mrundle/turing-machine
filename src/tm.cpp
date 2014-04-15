@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
 		}
 		else{
 			reader.read_user(tapes);				// Read tape input from the user
+			reader.check_tapes(tapes,machine.inputAlphabet);	// Check to make sure tapes consist of elements of inputAlphabet
 			processor.run_machine(machine,tapes);	// Process the machine on each of the tapes
 		}
 	}

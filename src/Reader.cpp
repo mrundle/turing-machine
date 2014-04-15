@@ -167,3 +167,31 @@ void Reader::read_user(vector< vector<string> > & tapes)
 		tapes.push_back(tape);
 	}
 }
+
+// Removes faulty input from tape and notifies user
+void Reader::check_tapes(vector< vector<string> > & tapes, vector<string> inputAlphabet){
+	for(int i = 0; i < tapes.size(); i++){
+		for(int j = 0; j < tapes[i].size(); j++){
+			vector<string>::iterator alphabet_el;
+			bool isValid = false;
+			for(alphabet_el = inputAlphabet.begin(); alphabet_el != inputAlphabet.end(); alphabet_el++){
+				if(tapes[i][j] == *alphabet_el){
+					isValid = true;
+					break;
+				}
+			}
+			if(!isValid){
+				cout << "tm: error: invalid input \"" << tapes[i][j] << "\" on tape input." << endl;
+				cout << "tm: removing from tape (and closing gap) and continuing with simulation." << endl;
+				cout << "tm: original input: ";				
+				print_vec(tapes[i]);
+				cout << endl;
+				tapes[i].erase(tapes[i].begin() + j);	// actually erase the offending element
+				j--;
+				cout << "tm: modified input: ";
+				print_vec(tapes[i]);
+				cout << endl << endl;			
+			}
+		}
+	}
+}
