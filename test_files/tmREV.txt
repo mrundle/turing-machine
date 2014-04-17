@@ -1,0 +1,48 @@
+Q:q0,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14
+A:a,b
+Z:a,b, ,A,B,X,Y
+T:q0,a,q8,X,R
+T:q0,b,q8,Y,R
+T:q0, ,q13, ,L
+T:q1,A,q1,A,R
+T:q1,B,q1,B,R
+T:q1, ,q2, ,R
+T:q2,a,q2,a,R
+T:q2,b,q2,b,R
+T:q2, ,q3,a,L
+T:q3, ,q6, ,L
+T:q3,a,q3,a,L
+T:q3,b,q3,b,L
+T:q4,A,q4,A,R
+T:q4,B,q4,B,R
+T:q4, ,q5, ,R
+T:q5,a,q5,a,R
+T:q5,b,q5,b,R
+T:q5, ,q3,b,L
+T:q6,a,q1,A,R
+T:q6,b,q4,B,R
+T:q6,X,q10,a,R
+T:q6,Y,q7,b,R
+T:q6,A,q6,A,L
+T:q6,B,q6,B,L
+T:q7,A,q7,a,R
+T:q7,B,q7,b,R
+T:q7, ,q12, ,R
+T:q8,a,q8,a,R
+T:q8,b,q8,b,R
+T:q8, ,q9, ,L
+T:q9,a,q1,A,R
+T:q9,b,q4,B,R
+T:q9,X,q10,a,R
+T:q9,Y,q7,b,R
+T:q10,A,q10,a,R
+T:q10,B,q10,b,R
+T:q10, ,q11, ,R
+T:q11,a,q11,a,R
+T:q11,b,q11,b,R
+T:q11, ,q13,a,R
+T:q12,a,q12,a,R
+T:q12,b,q12,b,R
+T:q12, ,q13,b,R
+S:q0
+F:q13,q14
