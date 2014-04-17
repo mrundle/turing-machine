@@ -163,6 +163,8 @@ void Reader::read_user(vector< vector<string> > & tapes)
 				tape.push_back(*tok_iter);
 			}
 		}
+		// if tape is empty, insert blank space
+		if(tape.size() == 0) tape.push_back(" ");
 		// finally, push the vector into the larger 2D vector
 		tapes.push_back(tape);
 	}
