@@ -110,8 +110,11 @@ void Processor::run_machine(Machine & machine, vector< vector<string> > & tapes)
 		bool made_transition;
 		int headPosition = 0;
 		string currentState = machine.startState;
+		// If tape is empty, add a blank space (THIS IS A BUG FIX, preventing segfault)
+		if(tape.size() == 0) tape.push_back(" ");
 		// Print initial tracing information
 		print_trace(tape,headPosition,currentState);
+
 		while(limit-- > 0){
 
 			// get input str
