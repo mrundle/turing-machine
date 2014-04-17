@@ -1,6 +1,6 @@
 Q:q1,q2,q3,q4,q5,q6,q7,q8,qa,qr
 A:a,b,#
-Z:a,b,#,x
+Z:a,b,#, ,x
 T:q1,b,q3,x,R
 T:q1,a,q2,x,R
 T:q2,a,q2,a,R
