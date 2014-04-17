@@ -7,3 +7,24 @@ T:q1,b,q2,X,L
 T:q1,X,q5,X,R
 T:q1,c,q6,X,L
 T:q2,X,q2,X,L
+T:q2,$,q8,$,R
+T:q2,a,q3,a,L
+T:q3,a,q3,a,L
+T:q3,X,q10,X,R
+T:q3,$,q10,$,R
+T:q4,a,q3,a,L
+T:q4,X,q4,X,L
+T:q4,$,q8,$,R
+T:q5,X,q5,X,R
+T:q5,c,q6,X,L
+T:q5,b,q4,X,L
+T:q6,X,q6,X,L
+T:q6,a,q7,a,L
+T:q6,$,q8,$,R
+T:q7,X,q10,X,R
+T:q7,a,q7,a,L
+T:q8,X,q8,X,R
+T:q8, ,q9, ,R
+T:q10,a,q1,X,R
+S:q0
+F:q9,q11
